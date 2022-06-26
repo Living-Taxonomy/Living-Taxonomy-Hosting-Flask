@@ -64,6 +64,4 @@ target/
 
 vcap-local.json
 
-
-#credentials
 service_account.json
