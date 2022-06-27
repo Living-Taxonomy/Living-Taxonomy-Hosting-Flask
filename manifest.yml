@@ -1,5 +1,5 @@
 ---
 applications:
  - name: livingtaxonomy
-   random-route: false
+   random-route: False
    memory: 256M

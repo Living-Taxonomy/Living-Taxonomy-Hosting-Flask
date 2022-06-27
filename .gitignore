@@ -63,15 +63,3 @@ target/
 *.DS_Store
 
 vcap-local.json
-
-.cfignore
-.dockerignore
-.gitattributes
-Dockerfile
-manifest.yml
-Procfile
-setup.py
-vcap-local.template.json
-service_account.json
-__pycache__/
-kubernetes/
