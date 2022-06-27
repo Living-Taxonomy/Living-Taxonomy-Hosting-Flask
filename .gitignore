@@ -72,6 +72,6 @@ manifest.yml
 Procfile
 setup.py
 vcap-local.template.json
-
+service_account.json
 __pycache__/
 kubernetes/
