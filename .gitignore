@@ -67,7 +67,6 @@ vcap-local.json
 .cfignore
 .dockerignore
 .gitattributes
-.gitignore
 Dockerfile
 manifest.yml
 Procfile
@@ -76,5 +75,3 @@ vcap-local.template.json
 
 __pycache__/
 kubernetes/
-
-##test
