@@ -64,4 +64,15 @@ target/
 
 vcap-local.json
 
-service_account.json
+.cfignore
+.dockerignore
+.gitattributes
+.gitignore
+Dockerfile
+manifest.yml
+Procfile
+setup.py
+vcap-local.template.json
+
+__pycache__/
+kubernetes/
