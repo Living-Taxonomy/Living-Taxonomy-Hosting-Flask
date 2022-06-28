@@ -13,7 +13,7 @@ def main(query):
 
         
         # More precessing on server; case un-sensetive
-        df = df_wks[df_wks['Common Name'].str.lower() == query.lower().replace("-", "")]
+        df = df_wks[df_wks['Common Name'].str.lower() == query.lower().replace("-", " ")]
         index_specie_num = int(str(df.index).replace("Int64Index([", "").replace("], dtype='int64')", ""))
 
         common_name = df.at[index_specie_num, "Common Name"]
@@ -25,9 +25,9 @@ def main(query):
         average_lifespan = df.at[index_specie_num, "Average Lifespan"]
         eating_habit = df.at[index_specie_num, "Eating Habits"]
         appetite = df.at[index_specie_num, "Appetite"]
-        image_url = df.at[index_specie_num, "Image URL"]
-        video_url = df.at[index_specie_num, "Video URL"]
-        audio_url = df.at[index_specie_num, "Audio URL"]
+        image_url = df.at[index_specie_num, "Image"]
+        video_url = df.at[index_specie_num, "Video"]
+        audio_url = df.at[index_specie_num, "Audio"]
 
         image_url = image_url.replace("https://drive.google.com/open?id=", "https://drive.google.com/uc?export=view&id=")
         video_url = str(video_url.replace("https://drive.google.com/open?id=", "https://drive.google.com/file/d/") + "/preview")

@@ -22,7 +22,8 @@ if 'VCAP_SERVICES' in os.environ:
         client = Cloudant(user, password, url=url, connect=True)
         db = client.create_database(db_name, throw_on_exists=False)
 elif "CLOUDANT_URL" in os.environ:
-    client = Cloudant(os.environ['CLOUDANT_USERNAME'], os.environ['CLOUDANT_PASSWORD'], url=os.environ['CLOUDANT_URL'], connect=True)
+    client = Cloudant(os.environ['CLOUDANT_USERNAME'], os.environ['CLOUDANT_PASSWORD'],
+                      url=os.environ['CLOUDANT_URL'], connect=True)
     db = client.create_database(db_name, throw_on_exists=False)
 elif os.path.isfile('vcap-local.json'):
     with open('vcap-local.json') as f:
@@ -39,12 +40,17 @@ elif os.path.isfile('vcap-local.json'):
 # When running this app on the local machine, default the port to 8000
 port = int(os.getenv('PORT', 8000))
 
+
 @app.route('/')
 def root():
     query = request.args.get("query", "")
 
     if query:
-        return(ltdbf.main(query))
+        try:
+            return(ltdbf.main(query))
+        except ValueError:
+            return app.send_static_file('404.html')
+            
     else:
         return app.send_static_file('index.html')
 
@@ -53,6 +59,7 @@ def root():
 def shutdown():
     if client:
         client.disconnect()
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=port, debug=False)
