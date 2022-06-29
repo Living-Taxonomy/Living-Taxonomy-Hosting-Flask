@@ -49,12 +49,12 @@ def main(query):
     audio_url = df.at[specie_cell_row.row-2, "Audio URL"]
     """
 
-    return(
+    HTML = (
         "<html>"
         "<head>"
         "<meta charset=\"utf-8\">"
         "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"
-        "< link rel=\"icon\" type=\"image/x-icon\" href=\"https://living-taxonomy-media.s3.jp-tok.cloud-object-storage.appdomain.cloud/Logo.png\" >"
+        "<link rel=\"icon\" type=\"image/x-icon\" href=\"https://living-taxonomy-media.s3.jp-tok.cloud-object-storage.appdomain.cloud/Logo.png\" >"
         "<title>" + common_name + " | Living Taxonomy" + "</title>"
         "</head>"
         
@@ -84,3 +84,5 @@ def main(query):
 
         "</html>"
     )
+
+    return HTML
