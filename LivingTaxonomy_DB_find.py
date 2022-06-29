@@ -16,6 +16,7 @@ def main(query):
 
     common_name = df.at[index_specie_num, "Common Name"]
     scientific_name = df.at[index_specie_num, "Scientific Name"]
+    order = df.at[index_specie_num, "Order"]
     organism_type = df.at[index_specie_num, "Organism Type"]
     family = df.at[index_specie_num, "Family"]
     genus = df.at[index_specie_num, "Genus"]
@@ -26,6 +27,9 @@ def main(query):
     image_url = df.at[index_specie_num, "Image"]
     video_url = df.at[index_specie_num, "Video"]
     audio_url = df.at[index_specie_num, "Audio"]
+    height = df.at[index_specie_num, "Height (in cm)"]
+    width = df.at[index_specie_num, "Width (in cm)"]
+    length = df.at[index_specie_num, "Length (in cm)"]
 
     image_url = image_url.replace("https://drive.google.com/open?id=", "https://drive.google.com/uc?export=view&id=")
     video_url = str(video_url.replace("https://drive.google.com/open?id=", "https://drive.google.com/file/d/") + "/preview")
@@ -72,13 +76,39 @@ def main(query):
 
         "<audio controls> <source src=\"" + audio_url + "\"> </audio>"
 
+        "<h3><u> Name </u></h3>"
         "<p><b>Common Name:</b> " + common_name + "</p>"
         "<p><b>Scientific Name:</b> " + scientific_name + "</p>"
+
+        "<br>"
+
         "<p><b>Organism Type:</b> " + organism_type + "</p>"
+
+        "<br>"
+
+        "<h3><u> Size </u></h3>"
+        "<p><b>Width(in cm):</b> " + width + "</p>"
+        "<p><b>Length(in cm):</b> " + length + "</p>"
+        "<p><b>Height(in cm):</b> " + height + "</p>"
+
+        "<br>"
+
+        "<h3><u> Taxonomy </u></h3>"
+        "<p><b>Order: </b>" + order + "</p>"
         "<p><b>Family: </b>" + family + "</p>"
         "<p><b>Genus: </b>" + genus + "</p>"
+         
+        "<br>"
+
         "<p><b>Habitat:</b> " + habitat + "</p>"
+
+        "<br>"
+
         "<p><b>Average Lifespan:</b> " + average_lifespan + "<p>"
+
+        "<br>"
+
+        "<h3><u> Food Consumption </u></h3>"
         "<p><b>Eating Habits:</b> " + eating_habit + "</p>"
         "<p><b>Appetite:</b> " + appetite + "</p>"
 
