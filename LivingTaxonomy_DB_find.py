@@ -14,22 +14,32 @@ def main(query):
     df = df_wks[df_wks['Common Name'].str.lower() == query.lower().replace("-", " ")]
     index_specie_num = int(str(df.index).replace("Int64Index([", "").replace("], dtype='int64')", ""))
 
+    #name
     common_name = df.at[index_specie_num, "Common Name"]
     scientific_name = df.at[index_specie_num, "Scientific Name"]
+    #taxonomy
     order = df.at[index_specie_num, "Order"]
     organism_type = df.at[index_specie_num, "Organism Type"]
     family = df.at[index_specie_num, "Family"]
     genus = df.at[index_specie_num, "Genus"]
+    #habitat
+    habitat_range = df.at[index_specie_num, "Range"]
     habitat = df.at[index_specie_num, "Habitat"]
+    #lifespan
     average_lifespan = df.at[index_specie_num, "Average Lifespan"]
+    #food
     eating_habit = df.at[index_specie_num, "Eating Habits"]
     appetite = df.at[index_specie_num, "Appetite"]
+    #media
     image_url = df.at[index_specie_num, "Image"]
     video_url = df.at[index_specie_num, "Video"]
     audio_url = df.at[index_specie_num, "Audio"]
+    #size
     height = df.at[index_specie_num, "Height (in cm)"]
     width = df.at[index_specie_num, "Width (in cm)"]
     length = df.at[index_specie_num, "Length (in cm)"]
+    #weight
+    weight = df.at[index_specie_num, "Weight"]
 
     image_url = image_url.replace("https://drive.google.com/open?id=", "https://drive.google.com/uc?export=view&id=")
     video_url = str(video_url.replace("https://drive.google.com/open?id=", "https://drive.google.com/file/d/") + "/preview")
@@ -90,6 +100,7 @@ def main(query):
         "<p><b>Width(in cm):</b> " + width + "</p>"
         "<p><b>Length(in cm):</b> " + length + "</p>"
         "<p><b>Height(in cm):</b> " + height + "</p>"
+        "<p><b>Weight:</b> " + weight + "</p>"
 
         "<br>"
 
@@ -100,6 +111,8 @@ def main(query):
          
         "<br>"
 
+        "<h3><u>Habitat</u></h3>"
+        "<p><b>Range:</b> " + habitat_range + "</p>"
         "<p><b>Habitat:</b> " + habitat + "</p>"
 
         "<br>"
