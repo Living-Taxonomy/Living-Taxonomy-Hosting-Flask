@@ -1,6 +1,7 @@
 import pandas as pd
 import gspread
 
+
 def main(query):
 
     sa = gspread.service_account(filename="service_account.json")
@@ -9,41 +10,44 @@ def main(query):
 
     df_wks = pd.DataFrame(wks.get_all_records())
 
-        
     # More precessing on server; case un-sensetive
-    df = df_wks[df_wks['Common Name'].str.lower() == query.lower().replace("-", " ")]
-    index_specie_num = int(str(df.index).replace("Int64Index([", "").replace("], dtype='int64')", ""))
+    df = df_wks[df_wks['Common Name'].str.lower() == query.lower()]
+    index_specie_num = int(str(df.index).replace(
+        "Int64Index([", "").replace("], dtype='int64')", ""))
 
-    #name
+    # name
     common_name = df.at[index_specie_num, "Common Name"]
     scientific_name = df.at[index_specie_num, "Scientific Name"]
-    #taxonomy
+    # taxonomy
     order = df.at[index_specie_num, "Order"]
     organism_type = df.at[index_specie_num, "Organism Type"]
     family = df.at[index_specie_num, "Family"]
     genus = df.at[index_specie_num, "Genus"]
-    #habitat
+    # habitat
     habitat_range = df.at[index_specie_num, "Range"]
     habitat = df.at[index_specie_num, "Habitat"]
-    #lifespan
+    # lifespan
     average_lifespan = df.at[index_specie_num, "Average Lifespan"]
-    #food
+    # food
     eating_habit = df.at[index_specie_num, "Eating Habits"]
     appetite = df.at[index_specie_num, "Appetite"]
-    #media
+    # media
     image_url = df.at[index_specie_num, "Image"]
     video_url = df.at[index_specie_num, "Video"]
     audio_url = df.at[index_specie_num, "Audio"]
-    #size
+    # size
     height = df.at[index_specie_num, "Height (in cm)"]
     width = df.at[index_specie_num, "Width (in cm)"]
     length = df.at[index_specie_num, "Length (in cm)"]
-    #weight
+    # weight
     weight = df.at[index_specie_num, "Weight"]
 
-    image_url = image_url.replace("https://drive.google.com/open?id=", "https://drive.google.com/uc?export=view&id=")
-    video_url = str(video_url.replace("https://drive.google.com/open?id=", "https://drive.google.com/file/d/") + "/preview")
-    audio_url = audio_url.replace("https://drive.google.com/open?id=", "https://docs.google.com/uc?export=download&id=")
+    image_url = image_url.replace(
+        "https://drive.google.com/open?id=", "https://drive.google.com/uc?export=view&id=")
+    video_url = str(video_url.replace("https://drive.google.com/open?id=",
+                    "https://drive.google.com/file/d/") + "/preview")
+    audio_url = audio_url.replace(
+        "https://drive.google.com/open?id=", "https://docs.google.com/uc?export=download&id=")
 
     """
     # More api calls; case sensitive
@@ -71,16 +75,18 @@ def main(query):
         "<link rel=\"icon\" type=\"image/x-icon\" href=\"https://living-taxonomy-media.s3.jp-tok.cloud-object-storage.appdomain.cloud/Logo.png\" >"
         "<title>" + common_name + " | Living Taxonomy" + "</title>"
         "</head>"
-        
+
         "<h1><u>" + common_name + "</u></h1>"
 
-        "<img src=\"" + image_url + "\"alt=\"" + common_name + "\"width=\"320\"\"height=\"240\"><br>"
+        "<img src=\"" + image_url + "\"alt=\"" +
+        common_name + "\"width=\"320\"\"height=\"240\"><br>"
 
         "<br>"
         "<br>"
-        
-        "<iframe src=\"" + video_url + "\" width=\"320\" height=\"240\" allow=\"autoplay\"></iframe>"
-        
+
+        "<iframe src=\"" + video_url +
+        "\" width=\"320\" height=\"240\" allow=\"autoplay\"></iframe>"
+
         "<br>"
         "<br>"
 
@@ -108,7 +114,7 @@ def main(query):
         "<p><b>Order: </b>" + order + "</p>"
         "<p><b>Family: </b>" + family + "</p>"
         "<p><b>Genus: </b>" + genus + "</p>"
-         
+
         "<br>"
 
         "<h3><u>Habitat</u></h3>"
