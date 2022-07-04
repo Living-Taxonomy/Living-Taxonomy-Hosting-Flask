@@ -45,11 +45,15 @@ port = int(os.getenv('PORT', 8000))
 def root():
     query = request.args.get("query", "")
 
+    """
     if query:
         try:
             return(ltdbf.main(query))
         except ValueError:
             return app.send_static_file('404.html')
+    """
+    if query:
+        return(ltdbf.main(query))
             
     else:
         return app.send_static_file('index.html')
