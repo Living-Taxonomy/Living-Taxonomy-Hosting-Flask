@@ -135,12 +135,12 @@ def main(query):
             "</html>"
         )
 
-        print(HTML)
+        return(HTML)
 
     except ValueError:
         close_matches = get_close_matches(query.lower(), df_wks['Common Name'].tolist())
         suggestStr = "" 
         for x in close_matches:
-            suggestStr = suggestStr + "<a href=\"https://livingtaxonomy.eu-gb.mybluemix.net/?query=" + x.replace(" ", "+") + "\">" + x + "</a><br>\n"
+            suggestStr = suggestStr + "<a href=\"/?query=" + x.replace(" ", "+") + "\">" + x + "</a><br>\n"
         suggestStr = "<html>\n<h1>Nearest Match(s)</h1>" + suggestStr + "</html>"
         return(suggestStr)
