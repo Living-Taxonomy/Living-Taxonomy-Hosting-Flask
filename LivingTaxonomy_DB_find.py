@@ -73,74 +73,74 @@ def main(query):
             "<meta charset=\"utf-8\">"
             "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"
             "<link rel=\"icon\" type=\"image/x-icon\" href=\"https://living-taxonomy-media.s3.jp-tok.cloud-object-storage.appdomain.cloud/Logo.png\" >"
-            "<title>" + common_name + " | Living Taxonomy" + "</title>"
+            "<title>" + str(common_name) + " | Living Taxonomy" + "</title>"
             "</head>"
 
-            "<h1><u>" + common_name + "</u></h1>"
+            "<h1><u>" + str(common_name) + "</u></h1>"
 
-            "<img src=\"" + image_url + "\"alt=\"" + common_name + "\"width=\"320\"\"height=\"240\"><br>"
-            "<p>Image by: " + image_credit + "</p>"
-
-            "<br>"
-            "<br>"
-
-            "<iframe src=\"" + video_url + "\" width=\"320\" height=\"240\" allow=\"autoplay\"></iframe>"
-            "<p>Video by: " + video_credit + "</p>"
+            "<img src=\"" + str(image_url) + "\"alt=\"" + common_name + "\"width=\"320\"\"height=\"240\"><br>"
+            "<p>Image by: " + str(image_credit) + "</p>"
 
             "<br>"
             "<br>"
 
-            "<audio controls> <source src=\"" + audio_url + "\"> </audio>"
-            "<p>Audio by: " + audio_credit + "</p>"
+            "<iframe src=\"" + str(video_url) + "\" width=\"320\" height=\"240\" allow=\"autoplay\"></iframe>"
+            "<p>Video by: " + str(video_credit) + "</p>"
+
+            "<br>"
+            "<br>"
+
+            "<audio controls> <source src=\"" + str(audio_url) + "\"> </audio>"
+            "<p>Audio by: " + str(audio_credit) + "</p>"
 
             "<h3><u> Name </u></h3>"
-            "<p><b>Common Name:</b> " + common_name + "</p>"
-            "<p><b>Scientific Name:</b> " + scientific_name + "</p>"
+            "<p><b>Common Name:</b> " + str(common_name) + "</p>"
+            "<p><b>Scientific Name:</b> " + str(scientific_name) + "</p>"
 
             "<br>"
 
-            "<p><b>Organism Type:</b> " + organism_type + "</p>"
+            "<p><b>Organism Type:</b> " + str(organism_type) + "</p>"
 
             "<br>"
 
             "<h3><u> Size </u></h3>"
-            "<p><b>Width(in cm):</b> " + width + "</p>"
-            "<p><b>Length(in cm):</b> " + length + "</p>"
-            "<p><b>Height(in cm):</b> " + height + "</p>"
-            "<p><b>Weight:</b> " + weight + "</p>"
+            "<p><b>Width(in cm):</b> " + str(width) + "</p>"
+            "<p><b>Length(in cm):</b> " + str(length) + "</p>"
+            "<p><b>Height(in cm):</b> " + str(height) + "</p>"
+            "<p><b>Weight:</b> " + str(weight) + "</p>"
 
             "<br>"
 
             "<h3><u> Taxonomy </u></h3>"
-            "<p><b>Order: </b>" + order + "</p>"
-            "<p><b>Family: </b>" + family + "</p>"
-            "<p><b>Genus: </b>" + genus + "</p>"
+            "<p><b>Order: </b>" + str(order) + "</p>"
+            "<p><b>Family: </b>" + str(family) + "</p>"
+            "<p><b>Genus: </b>" + str(genus) + "</p>"
 
             "<br>"
 
             "<h3><u>Habitat</u></h3>"
-            "<p><b>Range:</b> " + habitat_range + "</p>"
-            "<p><b>Habitat:</b> " + habitat + "</p>"
+            "<p><b>Range:</b> " + str(habitat_range) + "</p>"
+            "<p><b>Habitat:</b> " + str(habitat) + "</p>"
 
             "<br>"
 
-            "<p><b>Average Lifespan:</b> " + average_lifespan + "<p>"
+            "<p><b>Average Lifespan:</b> " + str(average_lifespan) + "<p>"
 
             "<br>"
 
             "<h3><u> Food Consumption </u></h3>"
-            "<p><b>Eating Habits:</b> " + eating_habit + "</p>"
-            "<p><b>Appetite:</b> " + appetite + "</p>"
+            "<p><b>Eating Habits:</b> " + str(eating_habit) + "</p>"
+            "<p><b>Appetite:</b> " + str(appetite) + "</p>"
 
             "</html>"
         )
 
-        return(HTML)
+        return(str(HTML))
 
     except ValueError:
         close_matches = get_close_matches(query.lower(), df_wks['Common Name'].tolist())
         suggestStr = "" 
         for x in close_matches:
-            suggestStr = suggestStr + "<a href=\"/?query=" + x.replace(" ", "+") + "\">" + x + "</a><br>\n"
-        suggestStr = "<html>\n<h1>Nearest Match(s)</h1>" + suggestStr + "</html>"
+            suggestStr = suggestStr + "<a href=\"/?query=" + x.replace(" ", "+") + "\">" + x + "</a><br>"
+        suggestStr = "<html><h1>Nearest Match(s)</h1>" + suggestStr + "</html>"
         return(suggestStr)
