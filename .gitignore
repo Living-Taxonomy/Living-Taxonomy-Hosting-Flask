@@ -64,6 +64,7 @@ target/
 
 vcap-local.json
 
+#Hosting Files
 service_account.json
 vcap-local.template.json
 setup.py
