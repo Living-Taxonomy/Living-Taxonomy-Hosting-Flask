@@ -40,13 +40,14 @@ def main(query):
         length = df.at[index_specie_num, "Length (in cm)"]
         # weight
         weight = df.at[index_specie_num, "Weight"]
+        #Credit
+        image_credit = df.at[index_specie_num, "Image Credit"]
+        video_credit = df.at[index_specie_num, "Video Credit"]
+        audio_credit = df.at[index_specie_num, "Audio Credit"]
 
-        image_url = image_url.replace(
-            "https://drive.google.com/open?id=", "https://drive.google.com/uc?export=view&id=")
-        video_url = str(video_url.replace("https://drive.google.com/open?id=",
-                        "https://drive.google.com/file/d/") + "/preview")
-        audio_url = audio_url.replace(
-            "https://drive.google.com/open?id=", "https://docs.google.com/uc?export=download&id=")
+        image_url = image_url.replace("https://drive.google.com/open?id=", "https://drive.google.com/uc?export=view&id=")
+        video_url = str(video_url.replace("https://drive.google.com/open?id=","https://drive.google.com/file/d/") + "/preview")
+        audio_url = audio_url.replace("https://drive.google.com/open?id=", "https://docs.google.com/uc?export=download&id=")
 
         """
         # More api calls; case sensitive
@@ -77,19 +78,20 @@ def main(query):
 
             "<h1><u>" + common_name + "</u></h1>"
 
-            "<img src=\"" + image_url + "\"alt=\"" +
-            common_name + "\"width=\"320\"\"height=\"240\"><br>"
+            "<img src=\"" + image_url + "\"alt=\"" + common_name + "\"width=\"320\"\"height=\"240\"><br>"
+            "<p>Image by: " + image_credit + "</p>"
 
             "<br>"
             "<br>"
 
-            "<iframe src=\"" + video_url +
-            "\" width=\"320\" height=\"240\" allow=\"autoplay\"></iframe>"
+            "<iframe src=\"" + video_url + "\" width=\"320\" height=\"240\" allow=\"autoplay\"></iframe>"
+            "<p>Video by: " + video_credit + "</p>"
 
             "<br>"
             "<br>"
 
             "<audio controls> <source src=\"" + audio_url + "\"> </audio>"
+            "<p>Audio by: " + audio_credit + "</p>"
 
             "<h3><u> Name </u></h3>"
             "<p><b>Common Name:</b> " + common_name + "</p>"
@@ -133,7 +135,7 @@ def main(query):
             "</html>"
         )
 
-        return HTML
+        print(HTML)
 
     except ValueError:
         close_matches = get_close_matches(query.lower(), df_wks['Common Name'].tolist())
