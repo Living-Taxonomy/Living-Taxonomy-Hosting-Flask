@@ -122,13 +122,13 @@ def main(query):
 
     except ValueError:
         close_matches = get_close_matches(query.lower(), df_wks['Common Name'].tolist())
-        
+
         suggestStr = "" 
         for x in close_matches:
             suggestStr = suggestStr + "<a href=\"/?query=" + x.replace(" ", "+") + "\">" + x + "</a><br>"
         
         if suggestStr == "":
-            return app.send_static_file('404.html')
+            return(open("static/404.html").read())
         else:
             suggestStr = "<html><head><meta name=\"viewport\" content=\"width = device-width, initial-scale = 1.0\"><link rel=\"icon\" type=\"image/x-icon\" href=\"https://raw.githubusercontent.com/Living-Taxonomy/Living-Taxonomy-Website-Media/main/Logo.png\"></head><body><h1> Nearest Match(s) </h1>" + suggestStr + "</body></html>"
             return(suggestStr)
