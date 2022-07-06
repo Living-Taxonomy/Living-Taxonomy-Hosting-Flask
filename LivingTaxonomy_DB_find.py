@@ -125,5 +125,5 @@ def main(query):
         suggestStr = "" 
         for x in close_matches:
             suggestStr = suggestStr + "<a href=\"/?query=" + x.replace(" ", "+") + "\">" + x + "</a><br>"
-        suggestStr = "<html><h1>Nearest Match(s)</h1>" + suggestStr + "</html>"
+        suggestStr = "<html><head><meta name=\"viewport\" content=\"width = device-width, initial-scale = 1.0\"><link rel=\"icon\" type=\"image/x-icon\" href=\"https://raw.githubusercontent.com/Living-Taxonomy/Living-Taxonomy-Website-Media/main/Logo.png\"></head><h1> Nearest Match(s) </h1>" + suggestStr + " < /html >"
         return(suggestStr)
