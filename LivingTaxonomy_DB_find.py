@@ -55,19 +55,19 @@ def main(query):
             "<head>"
             "<meta charset=\"utf-8\">"
             "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"
-            "<link rel=\"icon\" type=\"image/x-icon\" href=\"Logo.png\" >"
+            "<link rel=\"icon\" type=\"image/x-icon\" href=\"" + image_url + "\" >"
             "<title>" + common_name + " | Living Taxonomy" + "</title>"
             "</head>"
 
             "<h1><u>" + common_name + "</u></h1>"
 
-            "<img src=\"" + image_url + "\"alt=\"" + common_name + "\"width=\"320\"\"height=\"240\"><br>"
+            "<img src=\"" + image_url + "\"alt=\"" + common_name + "\"style=\"width: auto; height: 100%\"<br>"
             "<p>Image by: " + image_credit + "</p>"
 
             "<br>"
             "<br>"
 
-            "<iframe src=\"" + video_url + "\" width=\"320\" height=\"240\" allow=\"autoplay\"></iframe>"
+            "<iframe src=\"" + video_url + "\"allowfullscreen=\"true\" style=\"width: 100%; height: 100%\"></iframe>"
             "<p>Video by: " + video_credit + "</p>"
 
             "<br>"
