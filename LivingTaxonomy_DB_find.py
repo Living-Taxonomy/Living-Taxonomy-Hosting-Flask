@@ -61,7 +61,7 @@ def main(query):
 
             "<h1><u>" + common_name + "</u></h1>"
 
-            "<img src=\"" + image_url + "\"alt=\"" + common_name + "\"style=\"width: auto; height: 100%\"<br>"
+            "<img src=\"" + image_url + "\"alt=\"" + common_name + "\"style=\"width: 100%; height: auto\"<br>"
             "<p>Image by: " + image_credit + "</p>"
 
             "<br>"
