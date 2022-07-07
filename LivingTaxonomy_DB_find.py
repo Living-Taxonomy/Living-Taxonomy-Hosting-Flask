@@ -67,7 +67,7 @@ def main(query):
             "<br>"
             "<br>"
 
-            "<iframe src=\"" + video_url + "\"allowfullscreen=\"true\" style=\"width: 100%; height: auto\"></iframe>"
+            "<iframe src=\"" + video_url + "\"allowfullscreen=\"true\" style=\"width: auto; height: auto\"></iframe>"
             "<p>Video by: " + video_credit + "</p>"
 
             "<br>"
