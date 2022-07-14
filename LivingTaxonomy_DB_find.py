@@ -1,6 +1,7 @@
 import pandas as pd
 import gspread
 from difflib import get_close_matches
+import requests
 
 def main(query):
 
