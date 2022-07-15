@@ -14,6 +14,7 @@ def main(query):
     try:
         df = df_wks[df_wks['Common Name'].str.lower() == query.lower()]
         index_specie_num = int(str(df.index).replace("Int64Index([", "").replace("], dtype='int64')", ""))
+
         # name
         common_name = str(df.at[index_specie_num, "Common Name"])
         scientific_name = str(df.at[index_specie_num, "Scientific Name"])
