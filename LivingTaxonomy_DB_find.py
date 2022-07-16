@@ -117,6 +117,7 @@ def main(query):
 
                 "</html>"
             )
+            
 
             return(str(HTML))
 
