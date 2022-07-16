@@ -103,8 +103,9 @@ def main(query):
         randnum = random.randint(2, wks.row_count)
 
         return(open("static/index.html").read()
+        #Background
         .replace("randombg", df_wks.at[randnum, "Image"])
         .replace("https://drive.google.com/open?id=", "http://drive.google.com/uc?export=view&id=")
+        #More Info
         .replace("randomspecie", "/?query=" + df_wks.at[randnum, "Common Name"].replace(" ", "+") + "")
         )
-        
