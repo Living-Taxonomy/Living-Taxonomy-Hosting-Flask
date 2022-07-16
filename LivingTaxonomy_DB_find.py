@@ -133,4 +133,5 @@ def main(query):
                 suggestStr = "<html><head><meta name=\"viewport\" content=\"width = device-width, initial-scale = 1.0\"><link rel=\"icon\" type=\"image/x-icon\" href=\"https://raw.githubusercontent.com/Living-Taxonomy/Living-Taxonomy-Website-Media/main/Logo.png\"></head><body><h1> Nearest Match(s) </h1>" + suggestStr + "</body></html>"
                 return(suggestStr)
     else:
-        return(open("static/index.html").read().replace("randombg", random.choice(df_wks['Image'].tolist()).replace("https://drive.google.com/open?id=", "http://drive.google.com/uc?export=view&id=")).replace("randomspecie", "/?query=" + random.choice(df_wks['Common Name'].tolist()).replace(" ", "+") + ""))
+        randnum = random.randint(2, wks.row_count)
+        return(open("static/index.html").read().replace("randombg", df_wks.at[randnum, "Image"]).replace("https://drive.google.com/open?id=", "http://drive.google.com/uc?export=view&id=")).replace("randomspecie", "/?query=" + df_wks.at[randnum, "Common Name"].replace(" ", "+") + "")
