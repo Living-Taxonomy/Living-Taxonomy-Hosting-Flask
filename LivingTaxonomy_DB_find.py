@@ -50,74 +50,39 @@ def main(query):
 
 
 
-            HTML = (
-                "<html>"
-                "<head>"
-                "<meta charset=\"utf-8\">"
-                "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"
-                "<link rel=\"icon\" type=\"image/x-icon\" href=\"" + image_url + "\" >"
-                "<title>" + common_name + " | Living Taxonomy" + "</title>"
-                "</head>"
-
-                "<h1><u>" + common_name + "</u></h1>"
-
-                "<img src=\"" + image_url + "\"alt=\"" + common_name + "\"style=\"width: auto; height: auto\"<br>"
-                "<p>Image by: " + image_credit + "</p>"
-
-                "<br>"
-                "<br>"
-
-                "<iframe src=\"" + video_url + "\"allowfullscreen=\"true\" style=\"width: auto; height: auto\"></iframe>"
-                "<p>Video by: " + video_credit + "</p>"
-
-                "<br>"
-                "<br>"
-
-                "<audio controls> <source src=\"" + audio_url + "\"> </audio>"
-                "<p>Audio by: " + audio_credit + "</p>"
-
-                "<h3><u> Name </u></h3>"
-                "<p><b>Common Name:</b> " + common_name + "</p>"
-                "<p><b>Scientific Name:</b> " + scientific_name + "</p>"
-
-                "<br>"
-
-                "<p><b>Organism Type:</b> " + organism_type + "</p>"
-
-                "<br>"
-
-                "<h3><u> Size </u></h3>"
-                "<p><b>Width(in cm):</b> " + width + "</p>"
-                "<p><b>Length(in cm):</b> " + length + "</p>"
-                "<p><b>Height(in cm):</b> " + height + "</p>"
-                "<p><b>Weight:</b> " + weight + "</p>"
-
-                "<br>"
-
-                "<h3><u> Taxonomy </u></h3>"
-                "<p><b>Order: </b>" + order + "</p>"
-                "<p><b>Family: </b>" + family + "</p>"
-                "<p><b>Genus: </b>" + genus + "</p>"
-
-                "<br>"
-
-                "<h3><u>Habitat</u></h3>"
-                "<p><b>Range:</b> " + habitat_range + "</p>"
-                "<p><b>Habitat:</b> " + habitat + "</p>"
-
-                "<br>"
-
-                "<p><b>Average Lifespan:</b> " + average_lifespan + "<p>"
-
-                "<br>"
-
-                "<h3><u> Food Consumption </u></h3>"
-                "<p><b>Eating Habits:</b> " + eating_habit + "</p>"
-                "<p><b>Appetite:</b> " + appetite + "</p>"
-
-                "</html>"
+            HTML = (open("static/specie_page.html").read()
+            #Image
+            .replace("image_url", image_url)
+            .replace("image_credit", image_credit)
+            #Video
+            .replace("video_url", video_url)
+            .replace("video_credit", video_credit)
+            #Audio
+            .replace("audio_url", audio_url)
+            .replace("audio_credit", audio_credit)
+            #Name
+            .replace("common_name", common_name)
+            .replace("scientific_name", scientific_name)
+            #Organism type
+            .replace("organism_type", organism_type)
+            #Size
+            .replace("width_cm", width)
+            .replace("length_cm", length)
+            .replace("height_cm", height)
+            .replace("weight_x", weight)
+            #Taxonomy
+            .replace("order_x", order)
+            .replace("family_x", family)
+            .replace("genus_x", genus)
+            #Habitat
+            .replace("habitat_range", habitat_range)
+            .replace("habitat_x", habitat)
+            #Average Lifespan
+            .replace("average_lifespan", average_lifespan)
+            #Food Consumption
+            .replace("eating_habit", eating_habit)
+            .replace("appetite", appetite)
             )
-            
 
             return(str(HTML))
 
@@ -135,4 +100,9 @@ def main(query):
                 return(suggestStr)
     else:
         randnum = random.randint(2, wks.row_count)
-        return(open("static/index.html").read().replace("randombg", df_wks.at[randnum, "Image"]).replace("https://drive.google.com/open?id=", "http://drive.google.com/uc?export=view&id=")).replace("randomspecie", "/?query=" + df_wks.at[randnum, "Common Name"].replace(" ", "+") + "")
+        
+        return(open("static/index.html").read()
+        .replace("randombg", df_wks.at[randnum, "Image"])
+        .replace("https://drive.google.com/open?id=", "http://drive.google.com/uc?export=view&id=")
+        .replace("randomspecie", "/?query=" + df_wks.at[randnum, "Common Name"].replace(" ", "+") + "")
+        )
