@@ -1,7 +1,7 @@
 import pandas as pd
 import gspread
 from difflib import get_close_matches
-import random
+from random import randint
 
 def main(query):
     sa = gspread.service_account(filename="service_account.json")
@@ -11,7 +11,7 @@ def main(query):
 
     if query:
         try:
-            df = df_wks[df_wks['Common Name'].str.lower() == query.lower()]
+            df = df_wks[df_wks['Common Name'].str.lower() == query.lower()] 
             index_specie_num = int(str(df.index).replace("Int64Index([", "").replace("], dtype='int64')", ""))
 
             # name
@@ -87,7 +87,7 @@ def main(query):
             return(str(HTML))
 
         except ValueError:
-            close_matches = get_close_matches(query.lower(), df_wks['Common Name'].tolist())
+            close_matches = get_close_matches(query.lower(), df_wks['Common Name', 'Scientific Name'].tolist())
             suggestStr = "" 
             for x in close_matches:
                 suggestStr = suggestStr + "<a href=\"/?query=" + x.replace(" ", "+") + "\">" + x + "</a><br>"
@@ -100,7 +100,7 @@ def main(query):
                 .replace("search_query", query)
                 )
     else:
-        randnum = random.randint(2, wks.row_count)
+        randnum = randint(2, wks.row_count)
 
         return(open("static/index.html").read()
         #Background
