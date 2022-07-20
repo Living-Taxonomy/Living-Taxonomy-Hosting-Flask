@@ -87,7 +87,7 @@ def main(query):
             return(str(HTML))
 
         except ValueError:
-            close_matches = get_close_matches(query.lower(), df_wks['Common Name', 'Scientific Name'].tolist())
+            close_matches = get_close_matches(query.lower(), df_wks['Common Name'].tolist())
             suggestStr = "" 
             for x in close_matches:
                 suggestStr = suggestStr + "<a href=\"/?query=" + x.replace(" ", "+") + "\">" + x + "</a><br>"
