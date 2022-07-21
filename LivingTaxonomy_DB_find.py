@@ -49,9 +49,9 @@ def main(query):
             video_url = str(video_url.replace("https://drive.google.com/open?id=","https://drive.google.com/file/d/") + "/preview")
             audio_url = str(audio_url.replace("https://drive.google.com/open?id=", "https://docs.google.com/uc?export=download&id="))
 
+            HTML = (
+            open("static/specie_page.html").read()
 
-
-            HTML = (open("static/specie_page.html").read()
             #Image
             .replace("image_url", image_url)
             .replace("image_credit", image_credit)
@@ -84,6 +84,7 @@ def main(query):
             .replace("eating_habit", eating_habit)
             .replace("appetite", appetite)
             )
+            
             return(str(HTML))
 
         except ValueError:
