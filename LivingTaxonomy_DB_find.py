@@ -46,12 +46,11 @@ def main(query):
             audio_credit = str(df.at[index_specie_num, "Audio Credit"])
 
             image_url = str(image_url.replace("https://drive.google.com/open?id=", "https://drive.google.com/uc?export=view&id="))
-            video_url = str(video_url.replace("https://drive.google.com/open?id=","https://drive.google.com/file/d/") + "/preview")
+            video_url = str(video_url.replace("https://drive.google.com/open?id=", "https://drive.google.com/file/d/") + "/preview")
             audio_url = str(audio_url.replace("https://drive.google.com/open?id=", "https://docs.google.com/uc?export=download&id="))
 
-            HTML = (
-            open("static/specie_page.html").read()
-
+            HTML = open("static/specie_page.html").read()
+            HTML = (HTML
             #Image
             .replace("image_url", image_url)
             .replace("image_credit", image_credit)
@@ -84,7 +83,20 @@ def main(query):
             .replace("eating_habit", eating_habit)
             .replace("appetite", appetite)
             )
+
+            if video_url == "":
+                HTML = (HTML
+                        .replace('<br><br><iframe src="/preview" allowfullscreen="true" style="width:auto; height:auto"></iframe>', "")
+                        .replace("<p>Video by:  </p>", "")
+                )
             
+            if audio_url == "":
+                HTML = (HTML
+                        .replace('<br><br><audio controls>', "")
+                        .replace('<source src="">', "")
+                        .replace('</audio>', "")
+                        .replace('<p>Audio by: </p>', "")
+                        )
             return(str(HTML))
 
         except ValueError:
