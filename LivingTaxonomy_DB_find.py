@@ -84,7 +84,7 @@ def main(query):
             .replace("appetite", appetite)
             )
 
-            if video_url == "":
+            if video_url == "/preview":
                 HTML = (HTML
                         .replace('<br><br><iframe src="/preview" allowfullscreen="true" style="width:auto; height:auto"></iframe>', "")
                         .replace("<p>Video by:  </p>", "")
