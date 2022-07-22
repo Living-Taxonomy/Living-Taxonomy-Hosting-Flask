@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        /* Set height of body and the document to 100% */
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial;
+        }
+
+        /* Style tab links */
+        .tablink {
+            background-color: #555;
+            color: white;
+            float: center;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 17px;
+            width: 14%;
+        }
+
+        .tablink:hover {
+            background-color: #777;
+        }
+
+        /* Style the tab content (and add height:100% for full page content) */
+        .tabcontent {
+            color: black;
+            display: none;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="tablink" onclick="openPage('Media', this, 'green')" id="defaultOpen">Media</button>
+    <button class="tablink" onclick="openPage('Name', this, 'green')">Name</button>
+    <button class="tablink" onclick="openPage('Size', this, 'green')">Size</button>
+    <button class="tablink" onclick="openPage('Taxonomy', this, 'green')">Taxonomy</button>
+    <button class="tablink" onclick="openPage('Habitat', this, 'green')">Habitat</button>
+    <button class="tablink" onclick="openPage('Food Consumption', this, 'green')">Food Consumption</button>
+    <button class="tablink" onclick="openPage('Miscellaneous', this, 'green')">Miscellaneous</button>
+
+    <div id="Media" class="tabcontent">
+
+        <h1><u> common_name </u></h1>
+
+        <img src="image_url" alt="common_name" style="width:auto; height:100%;">
+        <br>
+        <p>Image by: image_credit </p>
+
+        <br><br><iframe src="video_url" allowfullscreen="true" style="width:auto; height:auto"></iframe>
+        <p>Video by: video_credit </p>
+
+        <br><br><audio controls>
+            <source src="audio_url">
+        </audio>
+        <p>Audio by: audio_credit</p>
+    </div>
+
+    <div id="Name" class="tabcontent">
+        <h3><u> Name </u></h3>
+        <p><b>Common Name:</b> common_name </p>
+        <p><b>Scientific Name:</b> scientific_name </p>
+    </div>
+
+    <div id="Size" class="tabcontent">
+        <h3><u> Size </u></h3>
+        <p><b>Width(in cm):</b> width_cm </p>
+        <p><b>Length(in cm):</b> length_cm </p>
+        <p><b>Height(in cm):</b> height_cm </p>
+        <p><b>Weight:</b> weight_x </p>
+    </div>
+
+    <div id="Taxonomy" class="tabcontent">
+        <h3><u> Taxonomy </u></h3>
+        <p><b>Order: </b> order_x </p>
+        <p><b>Family: </b> family_x </p>
+        <p><b>Genus: </b> genus_x </p>
+    </div>
+
+    <div id="Habitat" class="tabcontent">
+        <h3><u>Habitat</u></h3>
+        <p><b>Range:</b> habitat_range </p>
+        <p><b>Habitat:</b> habitat_x </p>
+    </div>
+
+    <div id="Food Consumption" class="tabcontent">
+        <h3><u> Food Consumption </u></h3>
+        <p><b>Eating Habits:</b> eating_habit </p>
+        <p><b>Appetite:</b> appetite </p>
+    </div>
+
+    <div id="Miscellaneous" class="tabcontent">
+        <p><b>Organism Type:</b> organism_type </p>
+        <p><b>Average Lifespan:</b> average_lifespan </p>
+    </div>
+
+    <script>
+function openPage(pageName,elmnt,color) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+  elmnt.style.backgroundColor = color;
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+    </script>
+
+</body>
+
+</html>

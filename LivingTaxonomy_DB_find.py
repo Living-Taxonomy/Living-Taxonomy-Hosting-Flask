@@ -3,6 +3,7 @@ import gspread
 from difflib import get_close_matches
 from random import randint
 
+
 def main(query):
     sa = gspread.service_account(filename="service_account.json")
     sh = sa.open("database")
@@ -11,8 +12,9 @@ def main(query):
 
     if query:
         try:
-            df = df_wks[df_wks['Common Name'].str.lower() == query.lower()] 
-            index_specie_num = int(str(df.index).replace("Int64Index([", "").replace("], dtype='int64')", ""))
+            df = df_wks[df_wks['Common Name'].str.lower() == query.lower()]
+            index_specie_num = int(str(df.index).replace(
+                "Int64Index([", "").replace("], dtype='int64')", ""))
 
             # name
             common_name = str(df.at[index_specie_num, "Common Name"])
@@ -40,56 +42,59 @@ def main(query):
             length = str(df.at[index_specie_num, "Length (in cm)"])
             # weight
             weight = str(df.at[index_specie_num, "Weight"])
-            #Credit
+            # Credit
             image_credit = str(df.at[index_specie_num, "Image Credit"])
             video_credit = str(df.at[index_specie_num, "Video Credit"])
             audio_credit = str(df.at[index_specie_num, "Audio Credit"])
 
-            image_url = str(image_url.replace("https://drive.google.com/open?id=", "https://drive.google.com/uc?export=view&id="))
-            video_url = str(video_url.replace("https://drive.google.com/open?id=", "https://drive.google.com/file/d/") + "/preview")
-            audio_url = str(audio_url.replace("https://drive.google.com/open?id=", "https://docs.google.com/uc?export=download&id="))
+            image_url = str(image_url.replace(
+                "https://drive.google.com/open?id=", "https://drive.google.com/uc?export=view&id="))
+            video_url = str(video_url.replace(
+                "https://drive.google.com/open?id=", "https://drive.google.com/file/d/") + "/preview")
+            audio_url = str(audio_url.replace(
+                "https://drive.google.com/open?id=", "https://docs.google.com/uc?export=download&id="))
 
-            HTML = open("static/specie_page.html").read()
+            HTML = open("static/specie_page2.html").read()
             HTML = (HTML
-            #Image
-            .replace("image_url", image_url)
-            .replace("image_credit", image_credit)
-            #Video
-            .replace("video_url", video_url)
-            .replace("video_credit", video_credit)
-            #Audio
-            .replace("audio_url", audio_url)
-            .replace("audio_credit", audio_credit)
-            #Name
-            .replace("common_name", common_name)
-            .replace("scientific_name", scientific_name)
-            #Organism type
-            .replace("organism_type", organism_type)
-            #Size
-            .replace("width_cm", width)
-            .replace("length_cm", length)
-            .replace("height_cm", height)
-            .replace("weight_x", weight)
-            #Taxonomy
-            .replace("order_x", order)
-            .replace("family_x", family)
-            .replace("genus_x", genus)
-            #Habitat
-            .replace("habitat_range", habitat_range)
-            .replace("habitat_x", habitat)
-            #Average Lifespan
-            .replace("average_lifespan", average_lifespan)
-            #Food Consumption
-            .replace("eating_habit", eating_habit)
-            .replace("appetite", appetite)
-            )
+                    # Image
+                    .replace("image_url", image_url)
+                    .replace("image_credit", image_credit)
+                    # Video
+                    .replace("video_url", video_url)
+                    .replace("video_credit", video_credit)
+                    # Audio
+                    .replace("audio_url", audio_url)
+                    .replace("audio_credit", audio_credit)
+                    # Name
+                    .replace("common_name", common_name)
+                    .replace("scientific_name", scientific_name)
+                    # Organism type
+                    .replace("organism_type", organism_type)
+                    # Size
+                    .replace("width_cm", width)
+                    .replace("length_cm", length)
+                    .replace("height_cm", height)
+                    .replace("weight_x", weight)
+                    # Taxonomy
+                    .replace("order_x", order)
+                    .replace("family_x", family)
+                    .replace("genus_x", genus)
+                    # Habitat
+                    .replace("habitat_range", habitat_range)
+                    .replace("habitat_x", habitat)
+                    # Average Lifespan
+                    .replace("average_lifespan", average_lifespan)
+                    # Food Consumption
+                    .replace("eating_habit", eating_habit)
+                    .replace("appetite", appetite)
+                    )
 
             if video_url == "/preview":
                 HTML = (HTML
                         .replace('<br><br><iframe src="/preview" allowfullscreen="true" style="width:auto; height:auto"></iframe>', "")
                         .replace("<p>Video by:  </p>", "")
-                )
-            
+                        )
+
             if audio_url == "":
                 HTML = (HTML
                         .replace('<br><br><audio controls>', "")
@@ -100,25 +105,27 @@ def main(query):
             return(str(HTML))
 
         except ValueError:
-            close_matches = get_close_matches(query.lower(), df_wks['Common Name'].tolist())
-            suggestStr = "" 
+            close_matches = get_close_matches(
+                query.lower(), df_wks['Common Name'].tolist())
+            suggestStr = ""
             for x in close_matches:
-                suggestStr = suggestStr + "<a href=\"/?query=" + x.replace(" ", "+") + "\">" + x + "</a><br>"
-            
+                suggestStr = suggestStr + "<a href=\"/?query=" + \
+                    x.replace(" ", "+") + "\">" + x + "</a><br>"
+
             if suggestStr == "":
                 return(open("static/404.html").read())
             else:
                 return(open("static/suggest_search.html").read()
-                .replace("suggestStr", suggestStr)
-                .replace("search_query", query)
-                )
+                       .replace("suggestStr", suggestStr)
+                       .replace("search_query", query)
+                       )
     else:
         randnum = randint(2, wks.row_count)
 
         return(open("static/index.html").read()
-        #Background
-        .replace("randombg", df_wks.at[randnum, "Image"])
-        .replace("https://drive.google.com/open?id=", "http://drive.google.com/uc?export=view&id=")
-        #More Info
-        .replace("randomspecie", "/?query=" + df_wks.at[randnum, "Common Name"].replace(" ", "+") + "")
-        )
+               # Background
+               .replace("randombg", df_wks.at[randnum, "Image"])
+               .replace("https://drive.google.com/open?id=", "http://drive.google.com/uc?export=view&id=")
+               # More Info
+               .replace("randomspecie", "/?query=" + df_wks.at[randnum, "Common Name"].replace(" ", "+") + "")
+               )
