@@ -47,14 +47,11 @@ def main(query):
             video_credit = str(df.at[index_specie_num, "Video Credit"])
             audio_credit = str(df.at[index_specie_num, "Audio Credit"])
 
-            image_url = str(image_url.replace(
-                "https://drive.google.com/open?id=", "https://drive.google.com/uc?export=view&id="))
-            video_url = str(video_url.replace(
-                "https://drive.google.com/open?id=", "https://drive.google.com/file/d/") + "/preview")
-            audio_url = str(audio_url.replace(
-                "https://drive.google.com/open?id=", "https://docs.google.com/uc?export=download&id="))
+            image_url = str(image_url.replace("https://drive.google.com/open?id=", "https://drive.google.com/uc?export=view&id="))
+            video_url = str(video_url.replace("https://drive.google.com/open?id=", "https://drive.google.com/file/d/") + "/preview")
+            audio_url = str(audio_url.replace("https://drive.google.com/open?id=", "https://docs.google.com/uc?export=download&id="))
 
-            HTML = open("static/specie_page2.html").read()
+            HTML = open("static/specie_page_v2.html").read()
             HTML = (HTML
                     # Image
                     .replace("image_url", image_url)
