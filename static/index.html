@@ -4,41 +4,69 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="manifest" href="manifest.json">
 
 	<title>Living Taxonomy</title>
-
 	<link rel="icon" type="image/x-icon" href="images/Logo.png">
 
-	<link rel="manifest" href="manifest.json">
-</head>
-
-<body>
-	<article>
-		<header>
-			<center>
-				<h1 style="background-color:rgba(255, 255, 255, 0.533);">Welcome To Living Taxonomy</h1>
-			</center>
-		</header>
-	</article>
-
 	<style>
+		body {
+			font-family: Arial;
+		}
+	
+		/* Style the tab */
+		.tab {
+			overflow: hidden;
+			background-color: #f1f1f12e;
+		}
+	
+		/* Style the buttons inside the tab */
+		.tab button {
+			background-color: rgb(221, 221, 221);
+			float: left;
+			border: none;
+			outline: none;
+			cursor: pointer;
+			padding: 14px 16px;
+			transition: 0.3s;
+			font-size: 17px;
+		}
+	
+		/* Change background color of buttons on hover */
+		.tab button:hover {
+			background-color: #00ffc3;
+		}
+	
+		/* Create an active/current tablink class */
+		.tab button.active {
+			background-color: #ccc;
+		}
+	
+		/* Style the tab content */
+		.tabcontent {
+			display: none;
+			padding: 6px 12px;
+			border: 1px solid #ccc;
+			border-top: none;
+		}
+
 		body {
 			background: url(randombg) no-repeat center center fixed;
 			-webkit-background-size: cover;
 			-moz-background-size: cover;
 			-o-background-size: cover;
-			background-size: cover; 
+			background-size: cover;
 			background-size: 100% 100%;
 		}
-	</style>
 
-	<style>
 		.right {
 			float: right;
 		}
-	</style>
 
-	<style>
+		.left {
+			float: left;
+		}
+
 		.footer {
 			position: fixed;
 			left: 0;
@@ -48,9 +76,7 @@
 			background-color: rgb(255, 255, 255);
 			text-align: left;
 		}
-	</style>
 
-	<style type="text/css">
 		.center {
 			margin: 0;
 			position: absolute;
@@ -59,22 +85,91 @@
 			-ms-transform: translate(-50%, -50%);
 			transform: translate(-50%, -50%);
 		}
+		.collapsible {
+			background-color: #777;
+			color: white;
+			cursor: pointer;
+			padding: 18px;
+			border: none;
+			text-align: left;
+			outline: none;
+			font-size: 15px;
+		}
+
+		.active, .collapsible:hover {
+			background-color: #555;
+		}
+
+		.content {
+			padding: 0 18px;
+			display: none;
+			overflow: hidden;
+			background-color: #f1f1f1;
+}
 	</style>
+</head>
 
-	<div class="right">
-		<a style="background-color:white;"
-			href="https://docs.google.com/forms/d/e/1FAIpQLScwNCaPgE9XPs-mSmAya4PP2Atf3ODlmd2lTiWkLw4OlSa4PQ/viewform?usp=sf_link"
-			target="_blank">Add an organism to the database</a>
+<body>
+	<div class="tab">
+		<center>
+			<h1>Living Taxonomy</h1>
+		</center>
+		
+		<button type="button" class="collapsible">☰</button>
+		<div class="content">
+			<div class="left">
+				<button class="tablinks" onclick="location.href = 'https://sunbird-sameer.dhaatu.com'">About the developer...</button>
+				<button class="tablinks" onclick="location.href = 'https://docs.google.com/spreadsheets/d/18EwBXA9wTOiw9DV5p0sS5b9OaFxM62iZF8UWuD1s8QI/edit?usp=sharing';">Database</button>
+				<button class="tablinks" onclick="location.href = 'https://github.com/Living-Taxonomy';">Github</button>
+				<br>
+				<button class="tablinks"onclick="location.href = 'https://docs.google.com/forms/d/e/1FAIpQLScwNCaPgE9XPs-mSmAya4PP2Atf3ODlmd2lTiWkLw4OlSa4PQ/viewform?usp=sf_link';">Add an organism to the database</button>
+			</div>
+			<script>
+				var coll = document.getElementsByClassName("collapsible");
+				var i;
 
+				for (i = 0; i < coll.length; i++) {
+					coll[i].addEventListener("click", function () {
+						this.classList.toggle("active");
+						var content = this.nextElementSibling;
+						if (content.style.display === "block") {
+							content.style.display = "none";
+						} else {
+							content.style.display = "block";
+						}
+					});
+				}
+			</script>
+		</div>
+
+		<div class="right">
+			<br>
+			<form method="get">
+				<input type="text" name="query" placeholder="Search Specie...">
+				<input type="submit" value="Search">
+			</form>
+			<button class="tablinks" onclick=location.assign("randomspecie")>Discover more about this specie!</button>
+		</div>
 	</div>
-
-	<button type="button" onclick=location.assign("randomspecie")>Discover more about this specie!</button>
+	
+	
+	<script>
+		function openCity(evt, cityName) {
+			var i, tabcontent, tablinks;
+			tabcontent = document.getElementsByClassName("tabcontent");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+			tablinks = document.getElementsByClassName("tablinks");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(" active", "");
+			}
+			document.getElementById(cityName).style.display = "block";
+			evt.currentTarget.className += " active";
+		}
+	</script>
 
 	<div class="center">
-		<form action="" method="get">
-			<input type="text" name="query" placeholder="Search Specie...">
-			<input type="submit" value="Search">
-		</form>
 	</div>
 
 	<script>
@@ -82,15 +177,6 @@
 			navigator.serviceWorker.register('/service-worker.js')
 		}
 	</script>
-
-	<div class="footer">
-		<a href="https://sunbird-sameer.dhaatu.com" target="_blank">About the developer...</a>
-		<br>
-		<a href="https://docs.google.com/spreadsheets/d/18EwBXA9wTOiw9DV5p0sS5b9OaFxM62iZF8UWuD1s8QI/edit?usp=sharing"target="_blank">Database</a>
-		<br>
-		<a href="https://github.com/Living-Taxonomy" target="_blank">Github</a>
-		<br>
-	</div>
 
 </body>
 

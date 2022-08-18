@@ -125,4 +125,5 @@ def main(query):
                .replace("https://drive.google.com/open?id=", "http://drive.google.com/uc?export=view&id=")
                # More Info
                .replace("randomspecie", "/?query=" + df_wks.at[randnum, "Common Name"].replace(" ", "+") + "")
+               .replace("â˜°" ,"☰")
                )
