@@ -76,4 +76,3 @@ Dockerfile
 kubernetes/
 __pycache__/
 .vscode/
-inat_to_drive_data_transfer/
