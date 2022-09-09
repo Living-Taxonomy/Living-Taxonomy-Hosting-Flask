@@ -44,7 +44,7 @@ port = int(os.getenv('PORT', 8000))
 @app.route('/')
 def root():
     query = request.args.get("query", "")
-    
+
     return(ltdbf.main(query))
 
 
@@ -55,4 +55,4 @@ def shutdown():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=port, debug=False)
+    app.run(host='0.0.0.0', port=port, debug=True)
